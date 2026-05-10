@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Monitor</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container" style="max-width: 900px;">
+    <div class="card" style="margin-bottom: 2rem;">
+      <div class="action-header">
+        <h1>Server System Monitor</h1>
+        <a href="/" class="btn btn-outline">Kembali ke Dashboard</a>
+      </div>
+      <p style="color: var(--text-muted); margin-top: -1rem; margin-bottom: 2rem;">
+        Memantau sumber daya server secara real-time.
+      </p>
+
+      <div class="grid-dashboard">
+        
+        <!-- OS Info -->
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #e0e7ff; color: var(--primary);">🖥️</div>
+          <h3>Sistem Operasi</h3>
+          <p id="os-text" class="stat-value" style="font-size: 1.25rem;">Memuat...</p>
+        </div>
+
+        <!-- CPU Info -->
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #fef08a; color: #ca8a04;">⚡</div>
+          <h3>CPU Utilization</h3>
+          <p class="stat-value"><span id="cpu-text">0</span>%</p>
+          <div class="progress-bar-container">
+            <div id="cpu-bar" class="progress-bar" style="width: 0%; background: #ca8a04;"></div>
+          </div>
+        </div>
+
+        <!-- Memory Info -->
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #bbf7d0; color: #16a34a;">🧠</div>
+          <h3>Memory (RAM)</h3>
+          <p class="stat-value"><span id="mem-text">0 / 0</span> GB</p>
+          <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;"><span id="mem-percent">0</span>% terpakai</p>
+          <div class="progress-bar-container">
+            <div id="mem-bar" class="progress-bar" style="width: 0%; background: #16a34a;"></div>
+          </div>
+        </div>
+
+        <!-- Disk Info -->
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #fecaca; color: #dc2626;">💾</div>
+          <h3>Storage (Disk)</h3>
+          <p class="stat-value"><span id="disk-text">0 / 0</span> GB</p>
+          <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;"><span id="disk-percent">0</span>% terpakai</p>
+          <div class="progress-bar-container">
+            <div id="disk-bar" class="progress-bar" style="width: 0%; background: #dc2626;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function updateDashboard() {
+      try {
+        const response = await fetch('/api/system');
+        const data = await response.json();
+
+        // Update OS
+        document.getElementById('os-text').innerText = data.os;
+
+        // Update CPU
+        document.getElementById('cpu-text').innerText = data.cpu;
+        document.getElementById('cpu-bar').style.width = data.cpu + '%';
+
+        // Update RAM
+        document.getElementById('mem-text').innerText = `${data.mem.used} / ${data.mem.total}`;
+        document.getElementById('mem-percent').innerText = data.mem.percent;
+        document.getElementById('mem-bar').style.width = data.mem.percent + '%';
+
+        // Update Disk
+        document.getElementById('disk-text').innerText = `${data.disk.used} / ${data.disk.total}`;
+        document.getElementById('disk-percent').innerText = data.disk.percent;
+        document.getElementById('disk-bar').style.width = data.disk.percent + '%';
+
+      } catch (error) {
+        console.error('Failed to fetch system data:', error);
+      }
+    }
+
+    // Panggil saat pertama dimuat, lalu ulangi setiap 2 detik
+    updateDashboard();
+    setInterval(updateDashboard, 2000);
+  </script>
+</body>
+</html>

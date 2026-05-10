@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="action-header">
+        <h1>Daftar User</h1>
+        <div>
+          <a href="/system" class="btn btn-outline" style="margin-right: 0.5rem;">System Monitor</a>
+          <a href="/add" class="btn btn-primary">+ Tambah User</a>
+        </div>
+      </div>
+      
+      <% if (users && users.length > 0) { %>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Email</th>
+                <th style="width: 150px;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach(user => { %>
+                <tr>
+                  <td><strong><%= user.name %></strong></td>
+                  <td><%= user.email %></td>
+                  <td class="actions-cell">
+                    <a href="/edit/<%= user.id %>" class="btn btn-outline btn-sm">Edit</a>
+                    <a href="/delete/<%= user.id %>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">Hapus</a>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } else { %>
+        <div class="empty-state">
+          <p>Belum ada user yang terdaftar.</p>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
