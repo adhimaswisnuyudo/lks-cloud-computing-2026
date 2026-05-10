@@ -1,4 +1,4 @@
-# CRUD Node.js + MySQL with Premium GUI & System Monitor
+# <img src="https://upload.wikimedia.org/wikipedia/id/b/bf/Logo_LKS.png" alt="Logo LKS" height="40"> CRUD Node.js + MySQL with Premium GUI & System Monitor
 
 A complete full-stack web application featuring a classic CRUD (Create, Read, Update, Delete) system for user management and a real-time hardware system monitor. Built with Node.js, Express, Sequelize (MySQL), and rendered with EJS.
 

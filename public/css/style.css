@@ -268,3 +268,9 @@ tr:hover {
   border-radius: 4px;
   transition: width 0.5s ease-in-out;
 }
+
+.logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}

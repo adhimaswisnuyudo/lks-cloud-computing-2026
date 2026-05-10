@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>System Monitor</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
   <div class="container" style="max-width: 900px;">
     <div class="card" style="margin-bottom: 2rem;">
       <div class="action-header">
-        <h1>Server System Monitor</h1>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <img src="https://upload.wikimedia.org/wikipedia/id/b/bf/Logo_LKS.png" alt="Logo LKS" class="logo">
+          <h1 style="margin-bottom: 0; text-align: left;">Server System Monitor</h1>
+        </div>
         <a href="/" class="btn btn-outline">Kembali ke Dashboard</a>
       </div>
       <p style="color: var(--text-muted); margin-top: -1rem; margin-bottom: 2rem;">
@@ -18,7 +23,7 @@
       </p>
 
       <div class="grid-dashboard">
-        
+
         <!-- OS Info -->
         <div class="stat-card">
           <div class="stat-icon" style="background: #e0e7ff; color: var(--primary);">🖥️</div>
@@ -41,7 +46,8 @@
           <div class="stat-icon" style="background: #bbf7d0; color: #16a34a;">🧠</div>
           <h3>Memory (RAM)</h3>
           <p class="stat-value"><span id="mem-text">0 / 0</span> GB</p>
-          <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;"><span id="mem-percent">0</span>% terpakai</p>
+          <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;"><span
+              id="mem-percent">0</span>% terpakai</p>
           <div class="progress-bar-container">
             <div id="mem-bar" class="progress-bar" style="width: 0%; background: #16a34a;"></div>
           </div>
@@ -52,7 +58,8 @@
           <div class="stat-icon" style="background: #fecaca; color: #dc2626;">💾</div>
           <h3>Storage (Disk)</h3>
           <p class="stat-value"><span id="disk-text">0 / 0</span> GB</p>
-          <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;"><span id="disk-percent">0</span>% terpakai</p>
+          <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;"><span
+              id="disk-percent">0</span>% terpakai</p>
           <div class="progress-bar-container">
             <div id="disk-bar" class="progress-bar" style="width: 0%; background: #dc2626;"></div>
           </div>
@@ -95,4 +102,5 @@
     setInterval(updateDashboard, 2000);
   </script>
 </body>
+
 </html>
